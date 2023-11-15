@@ -1,0 +1,27 @@
+.voting-list-container {
+  padding: 10px 70px 0px 70px;
+}
+
+.radio-buttons-group {
+  //display: flex;
+  align-items: center;
+}
+
+.candidate-container {
+  margin: 20px;
+  width: 100%;
+
+  .candidate-data {
+    width: 10%;
+  }
+
+  .candidate-credentials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .candidate-rates {
+    width: 80%;
+  }
+}

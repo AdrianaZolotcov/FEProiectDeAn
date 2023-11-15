@@ -1,0 +1,35 @@
+<form [formGroup]="candidateForm">
+  <div class="voting-list-container">
+    <mat-radio-group class="radio-buttons-group" aria-label="Select an option">
+      <ng-container *ngFor="let candidate of candidates">
+        <div style="display: flex;align-items: center;">
+          <mat-card class="candidate-container">
+            <div class="candidate-credentials">
+              <div class="candidate-data">
+                {{candidate.name}} {{candidate.surname}}
+              </div>
+              <div class="candidate-rates">
+                <mat-progress-bar mode="determinate" [value]="candidate.votes"></mat-progress-bar>
+              </div>
+              <div>
+                {{candidate.votes}}
+              </div>
+            </div>
+          </mat-card>
+          <ng-container *ngIf="!userData?.voted">
+            <mat-radio-button
+              (change)="checkSelected(candidate)"
+              name="fieldName"
+              ngDefaultControl
+              formControlName="selectedCandidate"
+              [value]="candidate"
+            ></mat-radio-button>
+          </ng-container>
+
+        </div>
+      </ng-container>
+    </mat-radio-group>
+  </div>
+</form>
+
+

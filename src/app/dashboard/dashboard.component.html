@@ -1,0 +1,31 @@
+<div class="dashboard-navigation-bar">
+  {{userData?.name}} {{userData?.surname}}
+  <button class="logout-button" mat-raised-button (click)="logOut()">Log out</button>
+</div>
+
+<div class="dashboard-content">
+
+  <ng-container *ngIf="!userData?.voted; else elseContainer">
+    <h1 class="select-candidate-text">Please select candidate</h1>
+  </ng-container>
+
+  <div style="display: flex; justify-content: space-around;">
+    <button class="logout-button" mat-raised-button (click)="sortByRates()">Sort by rating</button>
+
+    <form [formGroup]="searchForm">
+      <mat-form-field class="login-form-field">
+        <input type="text" matInput placeholder="Find by name" formControlName="candidateName">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <ng-template #elseContainer>
+    <h1 class="select-candidate-text">Results</h1>
+  </ng-template>
+
+  <app-voting-list #votingListComponent [percentageOfCandidates]="percentageOfCandidatesSubject | async" [userData]="userData" [candidates]="listOfCandidates | async"></app-voting-list>
+
+  <ng-container *ngIf="!userData?.voted">
+    <button class="logout-button" mat-raised-button (click)="voteForCandidate()">Vote</button>
+  </ng-container>
+</div>

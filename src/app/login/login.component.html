@@ -1,0 +1,79 @@
+<div class="login-page-container">
+  <mat-card class="login-page-card">
+    <ng-container *ngIf="showLoginForm; else signUpContainer">
+      <form [formGroup]="loginForm">
+        <h1 class="sign-in-field">Please sign in</h1>
+
+        <div>
+          <mat-form-field class="login-form-field">
+            <input type="text" matInput placeholder="Name" formControlName="nameControl">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="login-form-field">
+            <input autocomplete="one-time-code" type="text" matInput placeholder="Surname" formControlName="surnameControl">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="login-form-field">
+            <input autocomplete="one-time-code" type="text" matInput placeholder="Group" formControlName="groupControl">
+          </mat-form-field>
+        </div>
+
+        <div class="buttons-container">
+          <button class="login-button" (click)="signIn()" [disabled]="!loginForm.valid" mat-raised-button>Login</button>
+        </div>
+
+
+      </form>
+    </ng-container>
+
+  </mat-card>
+</div>
+
+<ng-template #signUpContainer>
+  <form [formGroup]="signUpForm">
+    <div>
+      <mat-form-field class="login-form-field">
+        <input type="text" matInput placeholder="Username" formControlName="loginControl">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="login-form-field">
+        <input autocomplete="one-time-code" type="password" matInput placeholder="Password" formControlName="passwordControl">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="login-form-field">
+        <mat-label>Select an option</mat-label>
+        <mat-select formControlName="genderControl">
+          <ng-container *ngFor="let item of genderOptions">
+            <mat-option [value]="item">{{item.gender}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="login-form-field">
+        <input type="number" matInput placeholder="Age" formControlName="ageControl">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-checkbox formControlName="confirmTermsAndConditionsControl">Agree with terms and conditions</mat-checkbox>
+    </div>
+  </form>
+
+
+  <div class="sign-up-buttons-container">
+    <button class="login-button" [disabled]="!signUpForm.valid" mat-raised-button>Confirm</button>
+    <button class="sign-up-button" (click)="showLoginForm = !showLoginForm" mat-raised-button>Cancel</button>
+  </div>
+</ng-template>
+
+
